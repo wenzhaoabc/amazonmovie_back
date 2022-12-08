@@ -1,0 +1,35 @@
+server:
+  port: 8084
+
+#spring:
+#  datasource:
+#    druid:
+#      url: jdbc:mysql://123.60.156.14:3306/spring_cloud_user?useSSL=false&serverTimeZone=UTC
+#      password: spring_cloud
+#      username: spring_cloud
+spring:
+  datasource:
+    mysql: # 默认数据源，Mysql
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://123.60.156.14:3306/spring_cloud_user?useSSL=false&serverTimeZone=UTC
+      username: spring_cloud
+      password: spring_cloud
+      type: com.alibaba.druid.pool.DruidDataSource
+    hive: # hive数据源配置
+      driver-class-name: org.apache.hive.jdbc.HiveDriver
+      jdbc-url: jdbc:hive2://192.168.40.133:10000/data_warehouse
+      username: root
+      password: hadoop
+      type: com.alibaba.druid.pool.DruidDataSource
+    neo4j:
+      jdbc-url: jdbc:neo4j:bolt://123.60.156.14:7687
+      username: neo4j
+      password: neo4jpwd
+#      driver-class-name: org.neo4j.driver.Driver
+
+    druid:
+      connect-timeout: 10000
+
+mybatis:
+  type-aliases-package: com.tongji.entity
+  mapper-locations: classpath*:com/tongji/mapper/*/*.xml
