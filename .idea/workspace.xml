@@ -4,26 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4c7d8b0-b702-4433-97b3-85c45286f826" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/Application.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/config/HiveDataSourceConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/config/MysqlDataSourceConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/config/Neo4jDataSourceConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/controller/MovieController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/entity/Movie.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/hive/HMovieMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/mysql/MMovieMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/mapper/neo4j/NMovieMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/service/HMovieService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/service/MovieService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/service/impl/HMovieServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/service/impl/MovieServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/hive/HMovieMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/mysql/MMovieMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/tongji/mapper/neo4j/NMovieMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/tongji/test/APITest.java" afterDir="false" />
+    <list default="true" id="f4c7d8b0-b702-4433-97b3-85c45286f826" name="Changes" comment="Changes">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/service/NMovieService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tongji/service/impl/NMovieServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tongji/controller/MovieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tongji/controller/MovieController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +36,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="$PROJECT_DIR$/../../../Java/apache-maven-3.8.6" />
+        <option name="mavenHome" value="$USER_HOME$/Java/apache-maven-3.8.6" />
         <option name="userSettingsFile" value="E:\Java\apache-maven-3.8.6\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
@@ -59,27 +47,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "MavenSettings",
-    "spring.configuration.checksum": "fbe21c6426bfbe7c68b505354fa6a307"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;9fdfff932359c06ed2bff6fdd403a933&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Java_EE_Program\11_data_warehouse\backend_rd\src\main\resources\com\tongji\mapper\hive" />
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.Application">
-    <configuration name="generated-requests | #2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="2" requestIdentifier="#2" runType="Run single request">
+    <configuration name="generated-requests | #2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="2" requestIdentifier="#2">
       <method v="2" />
     </configuration>
     <configuration name="APITest.getMovie" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
@@ -107,7 +95,8 @@
       </method>
     </configuration>
     <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="backend_rd" />
+      <option name="ACTIVE_PROFILES" />
+      <module name="amazonmovie_back" />
       <option name="SHORTEN_COMMAND_LINE" value="ARGS_FILE" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.tongji.Application" />
       <extension name="coverage">
@@ -130,7 +119,6 @@
       <list>
         <item itemvalue="Spring Boot.Application" />
         <item itemvalue="JUnit.APITest.getMovie" />
-        <item itemvalue="HTTP Request.generated-requests | #2" />
       </list>
     </recent_temporary>
   </component>
@@ -144,6 +132,17 @@
       <updated>1670489375490</updated>
       <workItem from="1670489377132" duration="2234000" />
       <workItem from="1670494108700" duration="13730000" />
+      <workItem from="1670644749358" duration="532000" />
+      <workItem from="1670645312685" duration="54000" />
+      <workItem from="1670645524932" duration="1972000" />
+      <workItem from="1670668353803" duration="71000" />
+      <workItem from="1670668466220" duration="2924000" />
+      <workItem from="1670988235813" duration="2275000" />
+      <workItem from="1671008227848" duration="2574000" />
+      <workItem from="1671075506900" duration="34000" />
+      <workItem from="1671098114861" duration="2117000" />
+      <workItem from="1671171102766" duration="2406000" />
+      <workItem from="1671201260742" duration="1246000" />
     </task>
     <servers />
   </component>

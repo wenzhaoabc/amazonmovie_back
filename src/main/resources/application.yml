@@ -21,10 +21,10 @@ spring:
       username: root
       password: hadoop
       type: com.alibaba.druid.pool.DruidDataSource
-    neo4j:
-      jdbc-url: jdbc:neo4j:bolt://123.60.156.14:7687
-      username: neo4j
-      password: neo4jpwd
+#    neo4j:
+#      jdbc-url: jdbc:neo4j:bolt://123.60.156.14:7687
+#      username: neo4j
+#      password: neo4jpwd
 #      driver-class-name: org.neo4j.driver.Driver
 
     druid:
@@ -33,3 +33,10 @@ spring:
 mybatis:
   type-aliases-package: com.tongji.entity
   mapper-locations: classpath*:com/tongji/mapper/*/*.xml
+org:
+  neo4j:
+    driver:
+      authentication:
+        password: neo4jpwd2
+        username: neo4j
+      uri: bolt://123.60.156.14:7687

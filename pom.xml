@@ -91,8 +91,8 @@
         <!--neo4j-->
         <dependency>
             <groupId>org.neo4j.driver</groupId>
-            <artifactId>neo4j-java-driver</artifactId>
-            <version>5.2.0</version>
+            <artifactId>neo4j-java-driver-spring-boot-starter</artifactId>
+            <version>4.2.7.0</version>
         </dependency>
     </dependencies>
 </project>
