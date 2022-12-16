@@ -7,6 +7,16 @@
     <resultMap id="movieResultMap" type="com.tongji.entity.Movie">
         <result column="username" property="name"/>
     </resultMap>
+    <resultMap id="originResultMap" type="com.tongji.entity.Origin">
+        <result column="ASIN" property="asin"/>
+        <result column="Name" property="title"/>
+        <result column="Grade" property="score"/>
+        <result column="Actor" property="actors"/>
+        <result column="SingleDirector" property="director"/>
+        <result column="Type" property="genre"/>
+        <result column="ReleaseTime" property="releaseTime"/>
+        <result column="Comments" property="commentNum"/>
+    </resultMap>
 
 
     <select id="selectById" resultMap="movieResultMap">
@@ -14,6 +24,13 @@
         from spring_cloud_user.tb_user
         where id = #{id}
     </select>
+
+    <select id="getOrigin" resultMap="originResultMap" parameterType="java.lang.String">
+        select ASIN, Name, Grade, Actor, SingleDirector, Type, ReleaseTime, Comments
+        from movies
+        where MovieOrder = (select MovieOrder from movies where Name = #{title} limit 1)
+    </select>
+
 
 
 </mapper>

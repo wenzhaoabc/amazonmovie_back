@@ -11,9 +11,9 @@ spring:
   datasource:
     mysql: # 默认数据源，Mysql
       driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: jdbc:mysql://123.60.156.14:3306/spring_cloud_user?useSSL=false&serverTimeZone=UTC
-      username: spring_cloud
-      password: spring_cloud
+      jdbc-url: jdbc:mysql://localhost:3306/amazon_movie?useSSL=false&serverTimeZone=UTC
+      username: root
+      password: Pfizer13
       type: com.alibaba.druid.pool.DruidDataSource
     hive: # hive数据源配置
       driver-class-name: org.apache.hive.jdbc.HiveDriver
