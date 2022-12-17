@@ -6,8 +6,6 @@ import com.tongji.entity.HMovieRes;
 import com.tongji.entity.Movie;
 import com.tongji.mapper.hive.HMovieMapper;
 import com.tongji.service.HMovieService;
-import org.apache.hadoop.hive.serde2.lazy.LazyObject;
-import org.apache.hadoop.yarn.webapp.hamlet2.Hamlet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +16,6 @@ public class HMovieServiceImpl implements HMovieService {
     @Autowired
     private HMovieMapper movieMapper;
 
-    @Override
-    public Movie getById(int id) {
-        Object o = movieMapper.selectById(id);
-        System.out.println("o = " + o);
-        return (Movie) o;
-    }
 
     @Override
     public String getMoviesByMultipleCondition(MovieInfoDto movieInfoDto) {
