@@ -1,6 +1,7 @@
 package com.tongji.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.tongji.dto.CooperateNum;
 import com.tongji.dto.MovieInfoDto;
 import com.tongji.entity.HMovieRes;
 import com.tongji.entity.Movie;
@@ -27,11 +28,52 @@ public class HMovieServiceImpl implements HMovieService {
             movies = movieMapper.getMoviesByMultipleCondition(movieInfoDto);
         } catch (Exception e) {
             movies = new ArrayList<>();
+            try {
+                Thread.sleep(1000 * 60);
+            } catch (Exception ee) {
+                ee.printStackTrace();
+            }
         }
         endTime = System.currentTimeMillis();
         res.put("movies", movies);
-        res.put("time", (endTime - startTime) / 1000 / 60);
+        res.put("time", (endTime - startTime));
         res.put("movieNum", movies.size());
+        return JSON.toJSONString(res);
+    }
+
+    @Override
+    public String getWorkMostActorByDirector(String directorName) {
+        Map<String, Object> res = new HashMap<>();
+        Long startTime = System.currentTimeMillis();
+        List<CooperateNum> cooperateNumList = movieMapper.getWorkMostActorByDirector(directorName);
+        Long endTime = System.currentTimeMillis();
+        res.put("actors", cooperateNumList);
+        res.put("time", (endTime - startTime));
+        res.put("length", cooperateNumList.size());
+        return JSON.toJSONString(res);
+    }
+
+    @Override
+    public String getWorkMostActorByActor(String actorName) {
+        Map<String, Object> res = new HashMap<>();
+        Long startTime = System.currentTimeMillis();
+        List<CooperateNum> cooperateNumList = movieMapper.getWorkMostActorByActor(actorName);
+        Long endTime = System.currentTimeMillis();
+        res.put("actors", cooperateNumList);
+        res.put("time", (endTime - startTime));
+        res.put("length", cooperateNumList.size());
+        return JSON.toJSONString(res);
+    }
+
+    @Override
+    public String getWorkMostDirectorByActor(String actorName) {
+        Map<String, Object> res = new HashMap<>();
+        Long startTime = System.currentTimeMillis();
+        List<CooperateNum> cooperateNumList = movieMapper.getWorkMostDirectorByActor(actorName);
+        Long endTime = System.currentTimeMillis();
+        res.put("directors", cooperateNumList);
+        res.put("time", (endTime - startTime));
+        res.put("length", cooperateNumList.size());
         return JSON.toJSONString(res);
     }
 }

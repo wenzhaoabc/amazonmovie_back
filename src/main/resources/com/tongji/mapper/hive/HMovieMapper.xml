@@ -78,4 +78,44 @@
             limit 50
         </where>
     </select>
+
+    <select id="getWorkMostActorByDirector" resultType="com.tongji.dto.CooperateNum">
+        select t_actor.actor_name as name, t2.num as num
+        from (SELECT count(*) AS num, actor_id
+              from t_movie_actor
+                       join t_movie_director tmd on t_movie_actor.movie_id = tmd.movie_id
+                       join t_director td
+                            on (tmd.director_id = td.director_id AND td.director_name = #{directorName})
+              group by actor_id
+              order by num desc
+              limit 10) t2,
+             t_actor
+        where t2.actor_id = t_actor.actor_id
+    </select>
+
+    <select id="getWorkMostActorByActor" resultType="com.tongji.dto.CooperateNum">
+        select t2.num as num, t_actor.actor_name as name
+        from (select count(*) as num, t2.actor_id as actor_id
+              from t_movie_actor t1
+                       join t_actor ta on t1.actor_id = ta.actor_id and ta.actor_name = #{actorName}
+                       join t_movie_actor t2 on t1.movie_id = t2.movie_id
+              group by t2.actor_id
+              order by num desc
+              limit 10) t2,
+             t_actor
+        where t_actor.actor_id = t2.actor_id
+    </select>
+    <select id="getWorkMostDirectorByActor" resultType="com.tongji.dto.CooperateNum">
+        select t_director.director_name as name, t2.num as num
+        from (SELECT count(*) AS num, director_id
+              from t_movie_director tmd
+                       join t_movie_actor tma on tma.movie_id = tmd.movie_id
+                       join t_actor ta
+                            on (tma.actor_id = ta.actor_id AND ta.actor_name = #{actorName})
+              group by director_id
+              order by num desc
+              limit 10) t2,
+             t_director
+        where t2.director_id = t_director.director_id
+    </select>
 </mapper>

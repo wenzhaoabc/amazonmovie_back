@@ -33,6 +33,7 @@ spring:
 mybatis:
   type-aliases-package: com.tongji.entity
   mapper-locations: classpath*:com/tongji/mapper/*/*.xml
+
 org:
   neo4j:
     driver:
@@ -40,3 +41,9 @@ org:
         password: neo4jpwd2
         username: neo4j
       uri: bolt://123.60.156.14:7687
+
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  level:
+    sql: debug
