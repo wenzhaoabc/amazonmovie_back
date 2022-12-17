@@ -8,6 +8,16 @@
         <result column="movie_id" property="id"/>
         <result column="movie_name" property="name"/>
     </resultMap>
+    <resultMap id="getMoviesByMultipleConditionMap" type="com.tongji.entity.HMovieRes">
+        <result column="movie_id" property="asin"/>
+        <result column="movie_name" property="title"/>
+        <result column="genre_name" property="edition"/>
+        <result column="grade" property="score"/>
+        <result column="review_num" property="commentNum"/>
+        <result column="year" property="year"/>
+        <result column="month" property="month"/>
+        <result column="day" property="day"/>
+    </resultMap>
 
 
     <!-- select 后不能写*，需要写具体的字段名-->
@@ -16,6 +26,56 @@
         from t_movie
         where movie_id = #{id}
     </select>
+    <!--
+      有关时间的查询放在from子查询中
+      mainActors为空
+      directorNames，actor查询利用foreach放在where字句中
+      category放在from字句中，使用left join
+    -->
+    <select id="getMoviesByMultipleCondition" resultMap="getMoviesByMultipleConditionMap">
+        SELECT t_movie.movie_id, t_movie.movie_name, t_movie.grade, t_movie.review_num, year, month, day
+        FROM t_movie
+        <if test="category != null">
+            JOIN t_movie_genre tmg ON t_movie.movie_id = tmg.movie_id
+            JOIN t_genre tg ON tmg.genre_id = tg.genre_id AND tg.genre_name=#{category}
+        </if>
+        <if test="minYear != null">
+            JOIN t_date ON t_date.date_id = t_movie.date_id
+        </if>
 
-
+        <if test="directorNames != null">
+            JOIN t_movie_director tmd ON t_movie.movie_id = tmd.movie_id
+            JOIN t_director ON tmd.director_id = t_director.director_id
+        </if>
+        <if test="actors != null">
+            JOIN t_movie_actor tma ON t_movie.movie_id = tma.movie_id
+            JOIN t_actor ta ON tma.actor_id = ta.actor_id
+        </if>
+        <where>
+            <if test="movieName != null">
+                t_movie.movie_name LIKE '%'+#{movieName}+'%'
+            </if>
+            <if test="minScore != null">
+                AND grade &gt; #{minScore}
+            </if>
+            <if test="maxScore != null">
+                AND grade &lt; #{maxScore}
+            </if>
+            <if test="directorNames != null">
+                AND t_director.director_name IN
+                <foreach collection="list" item="directorNames" index="index"
+                         open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="actors != null">
+                AND t_actor.actor_name IN
+                <foreach collection="list" index="index" item="actors"
+                         open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            limit 50
+        </where>
+    </select>
 </mapper>
