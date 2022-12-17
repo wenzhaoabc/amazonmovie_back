@@ -25,11 +25,15 @@ spring:
       jdbc-url: jdbc:neo4j:bolt://123.60.156.14:7687
       username: neo4j
       password: neo4jpwd
-#      driver-class-name: org.neo4j.driver.Driver
-
+    #      driver-class-name: org.neo4j.driver.Driver
     druid:
       connect-timeout: 10000
 
 mybatis:
   type-aliases-package: com.tongji.entity
   mapper-locations: classpath*:com/tongji/mapper/*/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  level:
+    sql: debug
