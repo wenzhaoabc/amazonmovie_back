@@ -10,4 +10,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface NMovieService {
     public Movie getMovieById(int id);
+
+
 }
