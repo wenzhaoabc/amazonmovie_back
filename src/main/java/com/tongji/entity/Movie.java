@@ -1,9 +1,8 @@
 package com.tongji.entity;
 
-import lombok.Data;
-
-@Data
+/**
+ * @Author : 王晨
+ * @Date : Created in 14:22 2022/12/17
+ */
 public class Movie {
-    private int id;
-    private String name;
 }

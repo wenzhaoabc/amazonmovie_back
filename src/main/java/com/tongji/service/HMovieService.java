@@ -2,12 +2,10 @@ package com.tongji.service;
 
 import com.tongji.dto.CooperateNum;
 import com.tongji.dto.MovieInfoDto;
-import com.tongji.entity.Movie;
 
 import java.util.List;
 
 public interface HMovieService {
-    public Movie getById(int id);
 
     public String getMoviesByMultipleCondition(MovieInfoDto movieInfoDto);
 
