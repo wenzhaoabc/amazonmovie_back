@@ -11,7 +11,7 @@ spring:
   datasource:
     mysql: # 默认数据源，Mysql
       driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: jdbc:mysql://47.103.223.106/data_warehouse/amazon_movie?useSSL=false&serverTimeZone=UTC
+      jdbc-url: jdbc:mysql://47.103.223.106/data_warehouse/?useSSL=false&serverTimeZone=UTC
       username: DWH
       password: DWHpwd123
       type: com.alibaba.druid.pool.DruidDataSource

@@ -14,10 +14,10 @@ public class MovieServiceImpl implements MovieService {
     @Autowired
     private MMovieMapper movieMapper;
 
-    @Override
-    public Movie getById(String id) {
-        return movieMapper.selectById(id);
-    }
+//    @Override
+//    public Movie getById(String id) {
+//        return movieMapper.selectById(id);
+//    }
 
     @Override
     public List<Origin> getOrigin(String title) { return movieMapper.getOrigin(title); }

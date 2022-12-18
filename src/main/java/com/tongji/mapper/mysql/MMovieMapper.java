@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 @Mapper
 public interface MMovieMapper {
-    public Movie selectById(String id);
+//    public Movie selectById(String id);
 
     List<Origin> getOrigin(String title);
 

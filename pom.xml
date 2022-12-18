@@ -10,8 +10,9 @@
     </parent>
 
     <groupId>org.tongji</groupId>
-    <artifactId>backend_rd</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>backend</artifactId>
+    <version>1.0.0</version>
+<!--    <packaging>pom</packaging>-->
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -118,4 +119,12 @@
             <version>4.2.7.0</version>
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

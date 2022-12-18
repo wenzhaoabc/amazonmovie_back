@@ -5,11 +5,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class APITest {
-    @Autowired
-    private MovieService movieService;
-
-    @Test
-    public void getMovie() {
-        System.out.println(movieService.getById("2"));
-    }
+//    @Autowired
+//    private MovieService movieService;
+//
+//    @Test
+//    public void getMovie() {
+//        System.out.println(movieService.getById("2"));
+//    }
 }
