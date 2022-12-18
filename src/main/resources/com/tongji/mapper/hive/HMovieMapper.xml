@@ -18,6 +18,16 @@
         <result column="month" property="month"/>
         <result column="day" property="day"/>
     </resultMap>
+    <resultMap id="getMoviesByMultipleConditionOneTableMap" type="com.tongji.entity.HMovieRes">
+        <result column="asin" property="asin"/>
+        <result column="title" property="title"/>
+        <result column="edition" property="edition"/>
+        <result column="global_rate" property="score"/>
+        <result column="rate_num" property="commentNum"/>
+        <result column="year" property="year"/>
+        <result column="month" property="month"/>
+        <result column="day" property="day"/>
+    </resultMap>
 
 
     <!-- select 后不能写*，需要写具体的字段名-->
@@ -53,7 +63,7 @@
         </if>
         <where>
             <if test="movieName != null">
-                t_movie.movie_name LIKE '%'+#{movieName}+'%'
+                t_movie.movie_name = #{movieName}
             </if>
             <if test="minScore != null">
                 AND grade &gt; #{minScore}
@@ -63,16 +73,16 @@
             </if>
             <if test="directorNames != null">
                 AND t_director.director_name IN
-                <foreach collection="list" item="directorNames" index="index"
+                <foreach collection="directorNames" item="director" index="index"
                          open="(" separator="," close=")">
-                    #{item}
+                    #{director}
                 </foreach>
             </if>
             <if test="actors != null">
                 AND t_actor.actor_name IN
-                <foreach collection="list" index="index" item="actors"
+                <foreach collection="actors" index="index" item="actor"
                          open="(" separator="," close=")">
-                    #{item}
+                    #{actor}
                 </foreach>
             </if>
             limit 50
@@ -117,5 +127,39 @@
               limit 10) t2,
              t_director
         where t2.director_id = t_director.director_id
+    </select>
+
+    <select id="getMoviesByMultipleConditionInOneTable" resultMap="getMoviesByMultipleConditionOneTableMap">
+        select asin,title,edition,global_rate,rate_num,year,month,day
+        from data_warehouse.t_orc_movie_all lateral view explode(genre) subview as edition
+        <where>
+            <if test="movieName != null">
+                title = #{movieName}
+            </if>
+            <if test="category != null">
+                and array_contains(genre,#{category})
+            </if>
+            <if test="directorNames != null">
+                <foreach collection="directorNames" item="director" index="index">
+                    and array_contains(director, #{director})
+                </foreach>
+            </if>
+            <if test="actors != null">
+                <foreach collection="actors" item="actor" index="index">
+                    and array_contains(starring_actors, #{actor})
+                </foreach>
+            </if>
+            <if test="minScore > 0">
+                and global_rate > #{minScore}
+            </if>
+            <if test="maxScore != 5">
+                and global_rate &lt; #{maxScore}
+            </if>
+            <if test="minYear != null">
+                and t_orc_movie_all.year between minYear and maxYear
+                and t_orc_movie_all.month between minMonth and maxMonth
+                and t_orc_movie_all.day between minDay and maxDay
+            </if>
+        </where>
     </select>
 </mapper>

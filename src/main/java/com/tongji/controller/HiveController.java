@@ -1,5 +1,6 @@
 package com.tongji.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.tongji.dto.MovieInfoDto;
 import com.tongji.service.HMovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.ws.rs.GET;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Hive相关的请求API
@@ -22,11 +25,15 @@ public class HiveController {
 
     @PostMapping("/movie/result")
     public ResponseEntity<String> getMovieResult(@RequestBody MovieInfoDto movieInfoDto) {
+        Map<String, Object> res = new HashMap<>();
+        Long startTime = System.currentTimeMillis();
         try {
             return ResponseEntity.ok(hMovieService.getMoviesByMultipleCondition(movieInfoDto));
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(400).body(null);
+            Long endTime = System.currentTimeMillis();
+            res.put("time", endTime - startTime);
+            return ResponseEntity.status(200).body(JSON.toJSONString(res));
         }
     }
 
@@ -38,11 +45,15 @@ public class HiveController {
      */
     @GetMapping("/director/actor")
     public ResponseEntity<String> getWorkMostActorByDirector(@RequestParam String directorName) {
+        Map<String, Object> res = new HashMap<>();
+        Long startTime = System.currentTimeMillis();
         try {
             return ResponseEntity.ok(hMovieService.getWorkMostActorByDirector(directorName));
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(400).body(null);
+            Long endTime = System.currentTimeMillis();
+            res.put("time", endTime - startTime);
+            return ResponseEntity.status(200).body(JSON.toJSONString(res));
         }
     }
 
@@ -54,11 +65,15 @@ public class HiveController {
      */
     @GetMapping("/actor/director")
     public ResponseEntity<String> getWorkMostActorByActor(@RequestParam String actorName) {
+        Map<String, Object> res = new HashMap<>();
+        Long startTime = System.currentTimeMillis();
         try {
             return ResponseEntity.ok(hMovieService.getWorkMostActorByActor(actorName));
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(400).body(null);
+            Long endTime = System.currentTimeMillis();
+            res.put("time", endTime - startTime);
+            return ResponseEntity.status(200).body(JSON.toJSONString(res));
         }
     }
 
@@ -70,11 +85,15 @@ public class HiveController {
      */
     @GetMapping("/actor/actor")
     public ResponseEntity<String> getWorkMostDirectorByActor(@RequestParam String actorName) {
+        Map<String, Object> res = new HashMap<>();
+        Long startTime = System.currentTimeMillis();
         try {
             return ResponseEntity.ok(hMovieService.getWorkMostDirectorByActor(actorName));
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.status(400).body(null);
+            Long endTime = System.currentTimeMillis();
+            res.put("time", endTime - startTime);
+            return ResponseEntity.status(200).body(JSON.toJSONString(res));
         }
     }
 }

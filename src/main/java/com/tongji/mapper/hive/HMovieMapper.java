@@ -21,6 +21,8 @@ public interface HMovieMapper {
 
     public List<HMovieRes> getMoviesByMultipleCondition(MovieInfoDto movieInfoDto);
 
+    public List<HMovieRes> getMoviesByMultipleConditionInOneTable(MovieInfoDto movieInfoDto);
+
     // 获取与该导演合作次数最多的演员前10
     public List<CooperateNum> getWorkMostActorByDirector(String directorName);
 

@@ -9,6 +9,9 @@ public interface HMovieService {
 
     public String getMoviesByMultipleCondition(MovieInfoDto movieInfoDto);
 
+    // 通过单表获取电影信息
+    public String getMoviesByMultipleConditionInOneTable(MovieInfoDto movieInfoDto);
+
     // 获取与该导演合作次数最多的演员前10
     public String getWorkMostActorByDirector(String directorName);
 

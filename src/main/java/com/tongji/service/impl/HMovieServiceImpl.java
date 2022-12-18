@@ -33,6 +33,7 @@ public class HMovieServiceImpl implements HMovieService {
             } catch (Exception ee) {
                 ee.printStackTrace();
             }
+            movies = movieMapper.getMoviesByMultipleConditionInOneTable(movieInfoDto);
         }
         endTime = System.currentTimeMillis();
         res.put("movies", movies);
@@ -40,6 +41,12 @@ public class HMovieServiceImpl implements HMovieService {
         res.put("movieNum", movies.size());
         return JSON.toJSONString(res);
     }
+
+    @Override
+    public String getMoviesByMultipleConditionInOneTable(MovieInfoDto movieInfoDto) {
+        return null;
+    }
+
 
     @Override
     public String getWorkMostActorByDirector(String directorName) {
