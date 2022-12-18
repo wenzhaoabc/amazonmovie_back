@@ -4,8 +4,30 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.tongji.mapper.mysql.MMovieMapper">
-    <resultMap id="movieResultMap" type="com.tongji.entity.Movie">
-        <result column="username" property="name"/>
+    <resultMap id="getMoviesByMultipleConditionMap" type="com.tongji.entity.MMovieRes">
+        <result column="movie_id" property="asin"/>
+        <result column="movie_name" property="title"/>
+        <result column="avg_score" property="score"/>
+        <result column="comment_num" property="commentNum"/>
+        <result column="actors_name" property="actors"/>
+        <result column="directors_name" property="directors"/>
+        <result column="genres" property="genres"/>
+    </resultMap>
+    <resultMap id="getDaCooperationMap" type="com.tongji.entity.Cooperation">
+        <result column="actor_name" property="name"/>
+        <result column="cooperation_times" property="times"/>
+    </resultMap>
+    <resultMap id="getAa2CooperationMap" type="com.tongji.entity.Cooperation">
+        <result column="actor_name2" property="name"/>
+        <result column="cooperation_times" property="times"/>
+    </resultMap>
+    <resultMap id="getAa1CooperationMap" type="com.tongji.entity.Cooperation">
+        <result column="actor_name1" property="name"/>
+        <result column="cooperation_times" property="times"/>
+    </resultMap>
+    <resultMap id="getAdCooperationMap" type="com.tongji.entity.Cooperation">
+        <result column="director_name" property="name"/>
+        <result column="cooperation_times" property="times"/>
     </resultMap>
     <resultMap id="originResultMap" type="com.tongji.entity.Origin">
         <result column="ASIN" property="asin"/>
@@ -19,18 +41,110 @@
     </resultMap>
 
 
-    <select id="selectById" resultMap="movieResultMap">
-        select *
-        from spring_cloud_user.tb_user
-        where id = #{id}
-    </select>
-
     <select id="getOrigin" resultMap="originResultMap" parameterType="java.lang.String">
         select ASIN, Name, Grade, Actor, SingleDirector, Type, ReleaseTime, Comments
         from movies
         where MovieOrder = (select MovieOrder from movies where Name = #{title} limit 1)
     </select>
 
+    <select id="getMovieNameByStr" resultType="java.lang.String" parameterType="java.lang.String">
+        select movie_name
+        from movie
+        where movie.movie_name like concat(#{movieName},'%')
+    </select>
 
+    <select id="getDirectorNameByStr" resultType="java.lang.String" parameterType="java.lang.String">
+        select director_name
+        from director
+        where director.director_name like concat(#{directorName},'%')
+    </select>
+
+    <select id="getActorNameByStr" resultType="java.lang.String" parameterType="java.lang.String">
+        select actor_name
+        from actor
+        where actor.actor_name like concat(#{actorName},'%')
+    </select>
+
+    <select id="getCategoryNameByStr" resultType="java.lang.String" parameterType="java.lang.String">
+        select genre_name
+        from genre
+        where genre.genre_name like concat(#{category},'%')
+    </select>
+
+    <select id="getAllDirectorsByMovieAsin" resultType="java.lang.String" parameterType="java.lang.String">
+        select directors_name
+        from movie
+        where movie.movie_id=#{movieAsin}
+    </select>
+
+    <select id="getAllMainActorsByMovieAsin" resultType="java.lang.String" parameterType="java.lang.String">
+        select actors_name
+        from movie
+        where movie.movie_id=#{movieAsin}
+    </select>
+
+    <select id="getMoviesByMultipleCondition" resultMap="getMoviesByMultipleConditionMap">
+        SELECT movie_id,movie_name,avg_score,comment_num,actors_name,directors_name,genres
+        FROM movie
+        <if test="minYear != null or minMonth!=null or minDay!=null or maxYear!=null or maxMonth!=null or maxDay!=null">
+            JOIN release_time rt on movie.release_time_id = rt.release_time_id
+        </if>
+        <where>
+            <if test="movieName != null">
+                movie_name = #{movieName}
+            </if>
+            <if test="minScore != null">
+                AND avg_score &gt; #{minScore}
+            </if>
+            <if test="maxScore != null">
+                AND avg_score &lt; #{maxScore}
+            </if>
+            <if test="category != null">
+                AND genres like concat('%',#{category},'%')
+            </if>
+            <if test="directorNames != null">
+                AND
+                <foreach collection="list" item="directorNames" index="index"
+                         open="(" separator="," close=")">
+                    directors_name like concat('%',#{item},'%')
+                </foreach>
+            </if>
+            <if test="actors != null">
+                AND
+                <foreach collection="list" index="index" item="actors"
+                         open="(" separator="," close=")">
+                    actors_name like concat('%',#{item},'%')
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="getActorsNameByDirector" resultMap="getDaCooperationMap" parameterType="java.lang.String">
+        select actor_name,cooperation_times
+        from cooperation_da
+        where director_name =#{directorName}
+        order by cooperation_times asc
+    </select>
+
+    <select id="getActorsNameByActor" resultMap="getAa2CooperationMap" parameterType="java.lang.String">
+        select actor_name2,cooperation_times
+        from cooperation_aa
+        where actor_name1 =#{actorName}
+        order by cooperation_times asc
+    </select>
+
+    <select id="getActorsName2ByActor" resultMap="getAa1CooperationMap" parameterType="java.lang.String">
+        select actor_name1,cooperation_times
+        from cooperation_aa
+        where actor_name2 =#{actorName}
+        order by cooperation_times asc
+    </select>
+
+    <select id="getDirectorsNameByActor" resultMap="getAdCooperationMap" parameterType="java.lang.String">
+        select director_name,cooperation_times
+        from cooperation_da
+        where actor_name =#{actorName}
+        order by cooperation_times asc
+    </select>
 
 </mapper>
