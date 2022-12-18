@@ -12,6 +12,4 @@ public class APITest {
     public void getMovie() {
         System.out.println(movieService.getById("2"));
     }
-
-
 }
