@@ -1,19 +1,13 @@
 server:
   port: 8084
 
-#spring:
-#  datasource:
-#    druid:
-#      url: jdbc:mysql://123.60.156.14:3306/spring_cloud_user?useSSL=false&serverTimeZone=UTC
-#      password: spring_cloud
-#      username: spring_cloud
 spring:
   datasource:
     mysql: # 默认数据源，Mysql
       driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: jdbc:mysql://47.103.223.106/data_warehouse/?useSSL=false&serverTimeZone=UTC
-      username: DWH
-      password: DWHpwd123
+      jdbc-url: jdbc:mysql://xx.xx.xx.xx/data_warehouse/?useSSL=false&serverTimeZone=UTC
+      username: xxx
+      password: xxx
       type: com.alibaba.druid.pool.DruidDataSource
     hive: # hive数据源配置
       driver-class-name: org.apache.hive.jdbc.HiveDriver
@@ -21,11 +15,6 @@ spring:
       username: root
       password: hadoop
       type: com.alibaba.druid.pool.DruidDataSource
-    #    neo4j:
-    #      jdbc-url: jdbc:neo4j:bolt://123.60.156.14:7687
-    #      username: neo4j
-    #      password: neo4jpwd
-    #      driver-class-name: org.neo4j.driver.Driver
 
     druid:
       connect-timeout: 10000
@@ -38,9 +27,9 @@ org:
   neo4j:
     driver:
       authentication:
-        password: neo4jpwd2
-        username: neo4j
-      uri: bolt://123.60.156.14:7687
+        password: xxxx
+        username: xxx
+      uri: bolt://xxx.xxx.xxx.xxx:7687
 
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
